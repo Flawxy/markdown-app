@@ -3,13 +3,25 @@ import './App.css'
 import { sampleText } from './sampleText'
 
 class App extends Component {
+  state = {
+    text: sampleText
+  }
+
+  handleChange = event => {
+    const text = event.target.value
+    this.setState({ text })
+  }
+
   render () {
+    const { text } = this.state
+
     return (
       <div className='container'>
         <div className='row'>
           <div className='col-sm-6'>
             <textarea
-              value={sampleText}
+              onChange={this.handleChange}
+              value={text}
               className='form-control'
               rows='35'>
             </textarea>
