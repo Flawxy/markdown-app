@@ -8,14 +8,24 @@ class App extends Component {
     text: sampleText
   }
 
+  componentDidMount () {
+    const text = localStorage.getItem('text')
+
+    this.setState({ text: text || sampleText })
+  }
+
+  componentDidUpdate () {
+    const { text } = this.state
+    localStorage.setItem('text', text)
+  }
+
   handleChange = event => {
     const text = event.target.value
     this.setState({ text })
   }
 
   renderText = text => {
-    const __html = marked(text,
-      { sanitize: true })
+    const __html = marked(text, { sanitize: true })
     return { __html }
   }
 
